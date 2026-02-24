@@ -1,0 +1,135 @@
+{
+  "layout": {
+    "tagline": "Business Immigration to Canada",
+    "search": "Search the website…",
+    "account": "Account"
+  },
+  "nav": {
+    "about": "About Us",
+    "why": "Why Canada?",
+    "services": "Our Services",
+    "start": "Where to Start",
+    "risks": "Risks and Guarantees",
+    "form": "Application Form",
+    "contacts": "Contacts",
+    "partner": "Become a Partner"
+  },
+  "about": {
+    "title": "We specialize exclusively in business immigration to Canada for CIS citizens",
+    "p9": "Why Kalder Energy",
+    "intro": "Unlike many Canadian and CIS-based immigration companies, we focus exclusively on business immigration and believe that the immigration process itself is the easiest stage. The most challenging stage is helping you, your business, and your family successfully operate and grow in Canada.",
+    "differenceTitle": "Our advantages compared to other companies:",
+    "points": {
+      "p1": "Kalder has developed its own Russian-language business search platform.",
+      "p2": "We provide business development and family adaptation services in Canada, not just legal services.",
+      "p3": "Strictly individual approach and full confidentiality.",
+      "p4": "We speak almost all CIS languages as well as Chinese.",
+      "p5": "We provide strictly certified immigration services.",
+      "p6": "Competitive pricing and flexible service options.",
+      "p7": "We continue to assist with business development even after the purchase.",
+      "p8": "We have personally gone through the immigration process and know the answers to your questions."
+    }
+  },
+  "why": {
+    "title": "Why Business Immigration to Canada",
+    "points": {
+      "p1": "Canada is one of the safest, most comfortable, beautiful, and stable countries in the world, with a high quality of life.",
+      "p2": "Canada is one of the most attractive countries in the world for doing business, offering favorable and predictable conditions.",
+      "p3": "A wide selection of businesses available for purchase or investment: Canada has over 1.1 million small and medium-sized enterprises, which form the backbone of its economy and enjoy numerous advantages. We help you take advantage of these opportunities for your future business.",
+      "p4": "A significant number of these businesses are already for sale or will be sold within the next 5 years as their owners from the baby boomer generation retire. This is a unique opportunity to purchase a business and immigrate.",
+      "p5": "Opportunity to immigrate with your spouse and children, as well as sponsor your parents and other family members.",
+      "p6": "Free education for children and free basic healthcare in certain provinces (such as Alberta and Quebec).",
+      "p7": "Fast processing of all permits and immigration documents (3 to 12 months).",
+      "p8": "Eligibility for Canadian citizenship after 3 years of continuous residence.",
+      "p9": "Visa-free travel to the United States after obtaining Canadian citizenship and the opportunity to expand your business into the U.S."
+    }
+  },
+  "servicesPage": {
+    "title": "Our Services",
+    "points": {
+      "p1": "Assistance with business immigration to Canada.",
+      "p2": "Assistance with purchasing a business in Canada (access to our online business-for-sale database).",
+      "p3": "Post-immigration adaptation and business support packages.",
+      "p4": "Organization of individual and group business trips and exploratory visits to Canada.",
+      "p5": "Real estate investment opportunities in Canada."
+    }
+  },
+  "risksPage": {
+    "title": "Risks and Our Guarantees",
+    "text1": "Risks related to the profitability of purchasing a business in Canada remain your responsibility if you select a business independently under our Silver immigration package. However, even in this case, we will assist you in obtaining additional information needed to make an informed decision. We strongly recommend obtaining an independent business profitability assessment (available in our Gold and Platinum packages). This ensures you receive an objective, third-party evaluation from industry specialists familiar with the specific business sector.",
+    "text2": "We will refund your subscription fee to our business database if you purchase a business before your subscription expires. The refund amount will be recalculated based on actual usage at a rate of $100 USD per month."
+  },
+  "partnerPage": {
+    "title": "Become Our Partner",
+    "intro": "If you know business professionals who may be interested in business immigration or investment opportunities in Canada, you can become our Partner in your country of residence. Your intermediary services will be compensated for each referred client and governed by an official contract.",
+    "listTitle": "Your responsibilities will include:",
+    "points": {
+      "p1": "Identifying and attracting potential clients and explaining the benefits of investing and immigrating to Canada through Kalder.",
+      "p2": "Explaining service packages (based on company materials), as well as website functionality, subscriptions, and client procedures.",
+      "p3": "Assisting communication between the Company and the Client, including database access and personal account setup.",
+      "p4": "Collecting client questions and feedback during personal meetings."
+    },
+    "button": "Submit Application"
+  },
+  "startPage": {
+    "title": "Business Immigration Assistance to Canada",
+    "intro": "Kalder will assist you throughout your business immigration journey to Canada. Below is a step-by-step overview of the process:",
+    "steps": {
+      "s1": "Complete the Application Form to create your personal online profile.",
+      "s2": "We will analyze your preferences and propose the best business immigration strategy for you and your family.",
+      "s3": "We will help you select the most suitable Canadian province based on your goals and opportunities.",
+      "s4": "Choose a subscription plan for access to our business database.",
+      "s5": "Select the most suitable business from our online database.",
+      "s6": "Sign the official immigration service agreement based on your chosen package.",
+      "s7": "Purchase the business in Canada in compliance with all legal requirements.",
+      "s8": "We assist with immigration documentation and relocation to Canada.",
+      "s9": "We assist with business development and family adaptation after arrival."
+    },
+    "subscriptions": {
+      "title": "Subscription Options for Business Database Access",
+      "button": "Learn More About Subscriptions",
+      "plans": {
+        "basic": {
+          "name": "Basic Subscription",
+          "price": "$100 / month",
+          "desc": "Access to the business-for-sale database."
+        },
+        "extended": {
+          "name": "Extended Subscription",
+          "price": "$250 / month",
+          "desc": "Full database access with additional business insights."
+        },
+        "premium": {
+          "name": "Premium Subscription",
+          "price": "$500 / month",
+          "desc": "Full access with consulting and support."
+        }
+      }
+    },
+    "packages": {
+      "title": "Immigration Service Packages",
+      "button": "Learn More About Packages",
+      "items": {
+        "silver": {
+          "name": "Silver Package",
+          "desc": "Basic immigration process support."
+        },
+        "gold": {
+          "name": "Gold Package",
+          "desc": "Extended support with independent business evaluation."
+        },
+        "platinum": {
+          "name": "Platinum Package",
+          "desc": "Full service with priority support."
+        }
+      }
+    }
+  },
+  "realEstatePage": {
+    "title": "Real Estate Investment in Canada",
+    "intro": "Real estate investment is one of the most reliable ways to preserve and grow your capital. According to leading institutions such as Royal Bank of Canada (RBC), Statistics Canada, and the Canadian Real Estate Association (CREA), the Canadian real estate market has demonstrated strong stability and long-term growth.",
+    "text1": "Canadian real estate is considered one of the safest investment options due to the country’s stable economy, strong housing demand, and transparent legal system. Property values in many provinces continue to increase over time, providing consistent capital appreciation and income opportunities.",
+    "text2": "Our real estate specialists will help you select the most suitable residential or commercial property based on your goals, budget, and expected return.",
+    "text3": "All transactions are conducted through licensed lawyers and trust accounts, ensuring 100% security and transparency of your investments."
+  }
+}
