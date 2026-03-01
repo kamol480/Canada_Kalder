@@ -14,7 +14,7 @@ export default function Footer() {
   return (
     <footer className="mt-20">
       <div className="bg-[#8f8f8f] text-white">
-        <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div id="contacts" className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
           <div>
             <h3 className="font-semibold text-lg mb-4">Контакты</h3>
 

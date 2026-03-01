@@ -22,22 +22,24 @@ export default function AboutPage() {
   const tPartner = useTranslations("partnerPage");
   const start = useTranslations("startPage");
   const t = useTranslations("realEstatePage");
-
+  const tProcess = useTranslations("processPage");
+  const tTrips = useTranslations("businessTripsPage");
+  const tDatabase = useTranslations("databasePage");
   const [showSubs, setShowSubs] = useState(false);
   const [showPackages, setShowPackages] = useState(false);
-  // ✅ ТОЛЬКО ИЗМЕНЕНИЕ: href -> id (контент не трогаем)
+
   const navItems = [
     { name: tNav("about"), id: "about" },
     { name: tNav("why"), id: "why" },
     { name: tNav("services"), id: "services" },
+    { name: tNav("baza"), id: "baza" },
     { name: tNav("start"), id: "start" },
-    { name: tNav("risks"), id: "risks" },
     { name: tNav("form"), id: "form" },
-    { name: tNav("contacts"), id: "contacts" },
+    { name: tNav("risks"), id: "risks" },
     { name: tNav("partner"), id: "partner" },
+    { name: tNav("contacts"), id: "contacts" },
   ];
 
-  // ✅ ТОЛЬКО ДОБАВЛЕНО: плавный скролл
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -46,82 +48,89 @@ export default function AboutPage() {
 
   return (
     <>
-      <nav className="w-full border-b  dark:border-white/10 bg-[#9a9a9a] dark:bg-[#0b1220]">
+      <nav
+        id="subnav"
+        className="fixed top-[100px] left-0 z-40 w-full border-b bg-[#9a9a9a]"
+      >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-8 py-3">
-          {/* ✅ ТОЛЬКО ИЗМЕНЕНИЕ: Link -> button (стили те же) */}
           {navItems.map((item) => (
             <button
               key={item.id}
               type="button"
               onClick={() => scrollToSection(item.id)}
-              className="relative text-sm font-medium text-white/90 dark:text-white/70 transition-all duration-300 hover:text-white after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+              className="relative whitespace-nowrap text-sm font-medium text-white/90 transition-all duration-300 hover:text-white after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
             >
               {item.name}
             </button>
           ))}
         </div>
       </nav>
-
-      {/* ✅ ТОЛЬКО ДОБАВЛЕНО: id + scroll-mt-24 (контент не трогаем) */}
-      <section id="about" className=" py-20 scroll-mt-24">
-        <div className="max-w-7xl mx-auto  px-6 grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
-          <div className="lg:col-span-2">
+      <section id="about" className="py-16 md:py-20 scroll-mt-24">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
+          <div className="lg:col-span-2 lg:sticky lg:top-24">
             <div className="mb-5">
-              <h1 className="text-[24px] font-medium ">{tAbout("p9")}</h1>
+              <h1 className="text-lg md:text-xl font-medium">{tAbout("p9")}</h1>
             </div>
 
-            <h2 className="text-[44px] leading-[1.15] font-bold  mb-6 max-w-3xl">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl leading-tight font-bold mb-6 max-w-3xl">
               {tAbout("title")}
             </h2>
 
-            <p className="text-[16px]  leading-7 mb-8 max-w-2xl">
+            <p className="text-base leading-7 mb-8 max-w-2xl">
               {tAbout("intro")}
             </p>
 
-            <h3 className="text-[20px] font-semibold  mb-5">
+            <h3 className="text-lg md:text-xl font-semibold mb-5">
               {tAbout("differenceTitle")}
             </h3>
 
-            <ul className="list-disc pl-6 space-y-3 text-[16px]  leading-7 marker:text-red-600">
+            <ul className="list-disc pl-6 space-y-3 text-base leading-7 marker:text-red-600">
               {["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8"].map((point) => (
                 <li key={point}>{tAbout(`points.${point}`)}</li>
               ))}
             </ul>
           </div>
 
-          <div className="hidden lg:block">
-            <div className="w-[500px] h-[500px] flex items-center justify-center">
-              <Image src={canada} alt="Canada" className="" priority />
+          <div className="hidden lg:flex justify-center">
+            <div className="w-full max-w-[700px] min-w-[450px]">
+              <Image
+                src={canada}
+                alt="Canada"
+                className="w-full h-auto rounded-2xl border border-gray-200 shadow-md mt-20 object-cover"
+                priority
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section id="why" className=" pb-24 scroll-mt-24">
-        <div className="max-w-7xl mx-auto flex  justify-evenly   gap-20 items-start">
-          <div className="flex flex-col">
-            <div className="hidden lg:block lg:col-span-1 order-1">
-              <div className="w-full flex items-start justify-center">
-                <div className="relative w-[600px] h-[600px]  flex items-center justify-center p-6">
-                  <Image src={canadafull} alt="Canada" className="" priority />
-                </div>
-              </div>
+      <section id="why" className="pb-16 md:pb-20 scroll-mt-24">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
+          <div className="hidden lg:flex flex-col items-center gap-10">
+            <div className="w-full max-w-[700px] min-w-[450px]">
+              <Image
+                src={canadafull}
+                alt="Canada"
+                className="w-full h-auto object-cover rounded-2xl border border-gray-200 shadow-md"
+                priority
+              />
             </div>
-            <div className="hidden lg:block lg:col-span-1 order-1">
-              <div className="w-full flex items-start justify-center">
-                <div className="relative w-[600px] h-[600px] mt-[-100px] flex items-center justify-center p-6">
-                  <Image src={canadafull5} alt="Canada" className="" priority />
-                </div>
-              </div>
+
+            <div className="w-full max-w-[700px] min-w-[450px] mt-50 ">
+              <Image
+                src={canadafull5}
+                alt="Canada"
+                className="w-full h-auto object-cover rounded-2xl border border-gray-200 shadow-md"
+                priority
+              />
             </div>
           </div>
-
-          <div className="lg:col-span-2 order-2 px-10">
-            <h2 className="text-[44px] leading-[1.15] font-bold  mb-8 max-w-3xl">
+          <div className="lg:col-span-2 pl-20">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl leading-tight font-bold mb-8 max-w-3xl">
               {tWhy("title")}
             </h2>
 
-            <ul className="list-disc pl-6 space-y-3 text-[16px]  leading-7 marker:text-red-600">
+            <ul className="list-disc pl-6 space-y-3 text-base leading-7 marker:text-red-600">
               {["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9"].map(
                 (point) => (
                   <li key={point}>{tWhy(`points.${point}`)}</li>
@@ -131,28 +140,227 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <section id="risks" className=" pb-24 scroll-mt-24">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
-          <div className="hidden lg:block">
-            <div className="w-[400px] h-[400px] flex items-center justify-center">
-              <Image src={canadafull3} alt="Risks" className="" priority />
-            </div>
-          </div>
-
-          <div className="lg:col-span-2 pl-15">
-            <h2 className="text-[44px] leading-[1.15] font-bold  mb-8 max-w-3xl">
-              {tRisks("title")}
+      <section id="services" className="pb-16 md:pb-24 scroll-mt-24">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16">
+          <div className="lg:col-span-2">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
+              {tServices("title")}
             </h2>
 
-            <p className="text-[16px]  leading-7 mb-6">{tRisks("text1")}</p>
+            <ul className="list-disc pl-6 space-y-3 marker:text-red-600">
+              <li>
+                <button
+                  onClick={() => scrollToSection("invest2")}
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition text-left"
+                >
+                  {tServices("points.p1")}
+                </button>
+              </li>
 
-            <p className="text-[16px]  leading-7">{tRisks("text2")}</p>
+              <li>
+                <button
+                  onClick={() => scrollToSection("start")}
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition text-left"
+                >
+                  {tServices("points.p2")}
+                </button>
+              </li>
+
+              <li>
+                <button
+                  onClick={() => scrollToSection("invest2")}
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition text-left"
+                >
+                  {tServices("points.p3")}
+                </button>
+              </li>
+
+              <li>
+                <button
+                  onClick={() => scrollToSection("partner")}
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition text-left"
+                >
+                  {tServices("points.p4")}
+                </button>
+              </li>
+
+              <li>
+                <button
+                  onClick={() => scrollToSection("invest")}
+                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition text-left"
+                >
+                  {tServices("points.p5")}
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div className="flex justify-center">
+            <div className="w-full max-w-[700px] min-w-[480px]">
+              <Image
+                src={canadafull2}
+                alt="Canada"
+                className="w-full h-auto object-cover rounded-2xl border border-gray-200 shadow-md"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="invest2" className="bg-[#f5f6f8] py-20 mb-20">
+      <section id="baza" className="py-24 bg-[#f5f6f8]  mb-20">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-[44px] font-bold mb-8">{tDatabase("title")}</h2>
+
+          <p className="text-gray-700 leading-7 mb-6">{tDatabase("intro")}</p>
+
+          <p className="text-gray-700 leading-7 mb-8">{tDatabase("text1")}</p>
+
+          <h3 className="text-[20px] font-semibold mb-6">
+            {tDatabase("subscriptions")}
+          </h3>
+
+          <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg transition">
+            {tDatabase("button")}
+          </button>
+        </div>
+      </section>
+
+      <section id="start" className="py-16 md:py-24 scroll-mt-24">
+        <div className="max-w-3xl mx-auto px-4 md:px-6 text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12">
+            {tProcess("title")}
+          </h2>
+
+          <ol className="space-y-6 text-left">
+            {[1, 2, 3, 4].map((i) => (
+              <li
+                key={i}
+                className="shadow-md rounded-xl p-6 border border-gray-200 hover:shadow-lg transition"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="min-w-[36px] h-[36px] bg-red-600 text-white flex items-center justify-center rounded-full font-semibold">
+                    {i}
+                  </div>
+
+                  <p className="text-gray-700 leading-7">
+                    {tProcess(`steps.s${i}`)}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+      <section id="risks" className="py-16 md:py-20 scroll-mt-24">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
+          <div className="hidden lg:flex justify-center">
+            <div className="w-full max-w-[700px] min-w-[480px]">
+              <Image
+                src={canadafull3}
+                alt="Risks"
+                className="w-full h-auto object-cover rounded-2xl border border-gray-200 shadow-md"
+                priority
+              />
+            </div>
+          </div>
+          <div className="lg:col-span-2 pl-20">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl leading-tight font-bold mb-8 max-w-3xl">
+              {tRisks("title")}
+            </h2>
+
+            <p className="text-base leading-7 mb-6">{tRisks("text1")}</p>
+
+            <p className="text-base leading-7">{tRisks("text2")}</p>
+          </div>
+        </div>
+      </section>
+      <section id="trips" className="py-16 md:py-20 scroll-mt-24 bg-white">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12">
+            {tTrips("title")}
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            <div className="bg-[#f8f9fb] p-6 md:p-8 rounded-2xl border border-gray-200">
+              <h3 className="text-xl md:text-2xl font-semibold mb-4">
+                {tTrips("visit.title")}
+              </h3>
+
+              <p className="text-gray-700 mb-4 leading-7">
+                {tTrips("visit.text1")}
+              </p>
+
+              <p className="text-gray-700 mb-4 leading-7">
+                {tTrips("visit.text2")}
+              </p>
+
+              <p className="text-gray-700 mb-6 leading-7">
+                {tTrips("visit.text3")}
+              </p>
+
+              <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg">
+                {tTrips("visit.button")}
+              </button>
+            </div>
+
+            <div className="bg-[#f8f9fb] p-6 md:p-8 rounded-2xl border border-gray-200">
+              <h3 className="text-xl md:text-2xl font-semibold mb-4">
+                {tTrips("business.title")}
+              </h3>
+
+              <p className="text-gray-700 mb-4 leading-7">
+                {tTrips("business.text1")}
+              </p>
+
+              <p className="text-gray-700 mb-4 leading-7">
+                {tTrips("business.text2")}
+              </p>
+
+              <p className="text-gray-700 mb-6 leading-7">
+                {tTrips("business.text3")}
+              </p>
+
+              <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg">
+                {tTrips("business.button")}
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        id="invest"
+        className="bg-[#f5f6f8] py-16 md:py-20 mb-16 md:mb-20"
+      >
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
+          <div className="lg:col-span-2">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl leading-tight font-bold text-gray-900 mb-6 max-w-3xl">
+              {t("title")}
+            </h2>
+
+            <p className="text-gray-600 leading-7 mb-4">{t("intro")}</p>
+
+            <p className="text-gray-600 leading-7 mb-4">{t("text1")}</p>
+
+            <p className="text-gray-600 leading-7 mb-4">{t("text2")}</p>
+
+            <p className="text-gray-600 leading-7">{t("text3")}</p>
+          </div>
+
+          <div className="flex justify-center">
+            <div className="w-full max-w-[700px] min-w-[450px] mt-35 ml-16">
+              <Image
+                src={canadafull6}
+                alt="Real Estate Canada"
+                className="w-full h-auto object-cover rounded-2xl border border-gray-200 shadow-md"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="invest2" className=" py-20 mb-20">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-[44px] font-bold mb-6">{start("title")}</h2>
 
@@ -214,98 +422,20 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <section id="services" className="pb-24 scroll-mt-24">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-16">
+      <section id="partner" className="pb-16 md:pb-24 scroll-mt-24">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
           <div className="lg:col-span-2">
-            <h2 className="text-[44px] font-bold mb-8">{tServices("title")}</h2>
-
-            <ul className="list-disc pl-6 space-y-3 marker:text-red-600">
-              <li>
-                <button
-                  onClick={() => scrollToSection("invest2")}
-                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition cursor-pointer text-left"
-                >
-                  {tServices("points.p1")}
-                </button>
-              </li>
-
-              <li>
-                <button
-                  onClick={() => scrollToSection("start")}
-                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition cursor-pointer text-left"
-                >
-                  {tServices("points.p2")}
-                </button>
-              </li>
-
-              <li>
-                <button
-                  onClick={() => scrollToSection("invest2")}
-                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition cursor-pointer text-left"
-                >
-                  {tServices("points.p3")}
-                </button>
-              </li>
-
-              <li>
-                <button
-                  onClick={() => scrollToSection("start")}
-                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition cursor-pointer text-left"
-                >
-                  {tServices("points.p4")}
-                </button>
-              </li>
-
-              <li>
-                <button
-                  onClick={() => scrollToSection("invest")}
-                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition cursor-pointer text-left"
-                >
-                  {tServices("points.p5")}
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <Image src={canadafull2} alt="Canada" />
-        </div>
-      </section>
-      <section id="invest" className="bg-[#f5f6f8] py-20 mb-20">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
-          <div className="lg:col-span-2">
-            <h2 className="text-[44px] leading-[1.15] font-bold text-gray-900 mb-6 max-w-3xl">
-              {t("title")}
-            </h2>
-
-            <p className="text-gray-600 leading-7 mb-4">{t("intro")}</p>
-            <p className="text-gray-600 leading-7 mb-4">{t("text1")}</p>
-            <p className="text-gray-600 leading-7 mb-4">{t("text2")}</p>
-
-            <p className="text-gray-600 leading-7">{t("text3")}</p>
-          </div>
-          <div className="w-[500px]">
-            <Image
-              src={canadafull6}
-              alt="Real Estate Canada"
-              className="w-[500px] h-[500px] object-contain"
-            />
-          </div>
-        </div>
-      </section>
-      <section id="partner" className=" pb-24 scroll-mt-24">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
-          <div className="lg:col-span-2">
-            <h2 className="text-[44px] leading-[1.15] font-bold  mb-6 max-w-3xl">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl leading-tight font-bold mb-6 max-w-3xl">
               {tPartner("title")}
             </h2>
 
-            <p className="text-[16px]  leading-7 mb-6">{tPartner("intro")}</p>
+            <p className="text-base leading-7 mb-6">{tPartner("intro")}</p>
 
-            <h3 className="text-[20px] font-semibold  mb-4">
+            <h3 className="text-lg md:text-xl font-semibold mb-4">
               {tPartner("listTitle")}
             </h3>
 
-            <ul className="list-disc pl-6 space-y-3 text-[16px]  leading-7 marker:text-red-600 mb-8">
+            <ul className="list-disc pl-6 space-y-3 text-base leading-7 marker:text-red-600 mb-8">
               {["p1", "p2", "p3", "p4"].map((point) => (
                 <li key={point}>{tPartner(`points.${point}`)}</li>
               ))}
@@ -315,9 +445,15 @@ export default function AboutPage() {
               {tPartner("button")}
             </button>
           </div>
-          <div className="hidden lg:block">
-            <div className="w-[500px] h-[500px] flex items-center justify-center">
-              <Image src={canadafull4} alt="Risks" className="" priority />
+
+          <div className="flex justify-center">
+            <div className="w-full max-w-[700px] min-w-[480px] mt-30 ml-12">
+              <Image
+                src={canadafull4}
+                alt="Risks"
+                className="w-full h-auto object-cover rounded-2xl border border-gray-200 shadow-md"
+                priority
+              />
             </div>
           </div>
         </div>
