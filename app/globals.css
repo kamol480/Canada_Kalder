@@ -122,6 +122,23 @@ html {
   padding-top: 100px;
   padding-bottom: 100px;
 }
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
 
 .about-section h1 {
   font-size: 28px;

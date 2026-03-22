@@ -12,6 +12,7 @@ import canadafull5 from "@/public/kak-uehat-v-kanadu.jpg";
 import canadafull6 from "@/public/can2.png";
 
 import { useState } from "react";
+import { Menu } from "lucide-react";
 
 export default function AboutPage() {
   const tAbout = useTranslations("about");
@@ -48,89 +49,126 @@ export default function AboutPage() {
 
   return (
     <>
-      <nav
-        id="subnav"
-        className="fixed top-[100px] left-0 z-40 w-full border-b bg-[#9a9a9a]"
-      >
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-8 py-3">
+     <nav
+  id="subnav"
+  className="fixed left-0 z-30 w-full border-b bg-[#9a9a9a] top-[80px] lg:top-[100px]"
+>
+  <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div className="hidden items-center justify-between py-3 md:flex">
+      {navItems.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          onClick={() => scrollToSection(item.id)}
+          className="relative whitespace-nowrap text-sm font-medium text-white/90 transition-all duration-300 hover:text-white after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+        >
+          {item.name}
+        </button>
+      ))}
+    </div>
+
+    <div className="py-2 md:hidden">
+      <details className="group">
+        <summary className="flex cursor-pointer list-none items-center justify-between rounded-xl bg-white/10 px-4 py-2 text-sm font-medium text-white [&::-webkit-details-marker]:hidden">
+          <Menu className="h-5 w-5 group-open:hidden" />
+          <span className="transition-transform duration-300 group-open:rotate-180">
+            ▼
+          </span>
+        </summary>
+
+        <div className="mt-2 flex flex-col gap-2 pb-2">
           {navItems.map((item) => (
             <button
               key={item.id}
               type="button"
-              onClick={() => scrollToSection(item.id)}
-              className="relative whitespace-nowrap text-sm font-medium text-white/90 transition-all duration-300 hover:text-white after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+              onClick={(e) => {
+                scrollToSection(item.id);
+                const details = e.currentTarget.closest("details");
+                if (details) {
+                  details.removeAttribute("open");
+                }
+              }}
+              className="rounded-lg px-4 py-2 text-left text-sm font-medium text-white/90 transition hover:bg-white/10 hover:text-white"
             >
               {item.name}
             </button>
           ))}
         </div>
-      </nav>
-      <section id="about" className="py-16 md:py-20 scroll-mt-24">
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
-          <div className="lg:col-span-2 lg:sticky lg:top-24">
-            <div className="mb-5">
-              <h1 className="text-lg md:text-xl font-medium">{tAbout("p9")}</h1>
+      </details>
+    </div>
+  </div>
+</nav>
+      <section
+        id="about"
+        className="mt-20 scroll-mt-28 py-12 md:mt-24 md:py-16 lg:py-20"
+      >
+        <div className="mx-auto md:mt-0 mt-15 grid max-w-screen-xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-3 lg:gap-16 lg:px-8">
+          <div className="lg:col-span-2 lg:sticky lg:top-28">
+            <div className="mb-4">
+              <h1 className="text-base font-medium md:text-lg">
+                {tAbout("p9")}
+              </h1>
             </div>
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl leading-tight font-bold mb-6 max-w-3xl">
+            <h2 className="mb-5 max-w-3xl text-2xl font-bold leading-tight sm:text-3xl md:text-4xl lg:text-5xl">
               {tAbout("title")}
             </h2>
 
-            <p className="text-base leading-7 mb-8 max-w-2xl">
+            <p className="mb-6 max-w-2xl text-sm leading-6 text-muted-foreground sm:text-base sm:leading-7">
               {tAbout("intro")}
             </p>
 
-            <h3 className="text-lg md:text-xl font-semibold mb-5">
+            <h3 className="mb-4 text-base font-semibold md:text-lg">
               {tAbout("differenceTitle")}
             </h3>
 
-            <ul className="list-disc pl-6 space-y-3 text-base leading-7 marker:text-red-600">
+            <ul className="space-y-2 pl-5 text-sm leading-6 marker:text-red-600 sm:space-y-3 sm:text-base sm:leading-7">
               {["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8"].map((point) => (
                 <li key={point}>{tAbout(`points.${point}`)}</li>
               ))}
             </ul>
           </div>
 
-          <div className="hidden lg:flex justify-center">
-            <div className="w-full max-w-[700px] min-w-[450px]">
+          <div className="order-first flex justify-center lg:order-none lg:flex">
+            <div className="w-full max-w-md sm:max-w-lg lg:min-w-[450px] lg:max-w-[700px]">
               <Image
                 src={canada}
                 alt="Canada"
-                className="w-full h-auto rounded-2xl border border-gray-200 shadow-md mt-20 object-cover"
+                className="h-auto w-full rounded-xl border border-gray-200 object-cover shadow-sm sm:rounded-2xl lg:mt-20 lg:shadow-md"
                 priority
               />
             </div>
           </div>
         </div>
       </section>
-
-      <section id="why" className="pb-16 md:pb-20 scroll-mt-24">
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
-          <div className="hidden lg:flex flex-col items-center gap-10">
-            <div className="w-full max-w-[700px] min-w-[450px]">
+      <section id="why" className="scroll-mt-24 pb-12 md:pb-16 lg:pb-20">
+        <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 px-4 md:px-6 lg:grid-cols-3 lg:gap-16 lg:px-8">
+          <div className="order-2 lg:order-1 lg:flex lg:flex-col lg:items-center lg:gap-10">
+            <div className="w-full lg:max-w-[700px] lg:min-w-[450px]">
               <Image
                 src={canadafull}
                 alt="Canada"
-                className="w-full h-auto object-cover rounded-2xl border border-gray-200 shadow-md"
+                className="h-auto w-full rounded-2xl border border-gray-200 object-cover shadow-md"
                 priority
               />
             </div>
 
-            <div className="w-full max-w-[700px] min-w-[450px] mt-50 ">
+            <div className="mt-6 w-full lg:mt-50 lg:max-w-[700px] lg:min-w-[450px]">
               <Image
                 src={canadafull5}
                 alt="Canada"
-                className="w-full h-auto object-cover rounded-2xl border border-gray-200 shadow-md"
+                className="h-auto w-full rounded-2xl border border-gray-200 object-cover shadow-md"
                 priority
               />
             </div>
           </div>
-          <div className="lg:col-span-2 pl-20">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl leading-tight font-bold mb-8 max-w-3xl">
+
+          <div className="order-1 lg:order-2 lg:col-span-2 lg:pl-20">
+            <h2 className="mb-6 max-w-3xl text-2xl font-bold leading-tight sm:text-3xl md:text-4xl lg:mb-8 lg:text-5xl">
               {tWhy("title")}
             </h2>
 
-            <ul className="list-disc pl-6 space-y-3 text-base leading-7 marker:text-red-600">
+            <ul className="list-disc space-y-3 pl-5 text-sm leading-6 marker:text-red-600 sm:text-base sm:leading-7 lg:pl-6">
               {["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9"].map(
                 (point) => (
                   <li key={point}>{tWhy(`points.${point}`)}</li>
@@ -140,18 +178,19 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <section id="services" className="pb-16 md:pb-24 scroll-mt-24">
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16">
-          <div className="lg:col-span-2">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
+
+      <section id="services" className="scroll-mt-24 pb-12 md:pb-16 lg:pb-24">
+        <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 px-4 md:px-6 lg:grid-cols-3 lg:gap-16 lg:px-8">
+          <div className="order-1 lg:col-span-2">
+            <h2 className="mb-6 text-2xl font-bold sm:text-3xl md:text-4xl lg:mb-8 lg:text-5xl">
               {tServices("title")}
             </h2>
 
-            <ul className="list-disc pl-6 space-y-3 marker:text-red-600">
+            <ul className="list-disc space-y-3 pl-5 text-sm leading-6 marker:text-red-600 sm:pl-6 sm:text-base sm:leading-7">
               <li>
                 <button
                   onClick={() => scrollToSection("invest2")}
-                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition text-left"
+                  className="text-left text-blue-600 underline underline-offset-4 transition hover:text-blue-800"
                 >
                   {tServices("points.p1")}
                 </button>
@@ -160,7 +199,7 @@ export default function AboutPage() {
               <li>
                 <button
                   onClick={() => scrollToSection("start")}
-                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition text-left"
+                  className="text-left text-blue-600 underline underline-offset-4 transition hover:text-blue-800"
                 >
                   {tServices("points.p2")}
                 </button>
@@ -169,7 +208,7 @@ export default function AboutPage() {
               <li>
                 <button
                   onClick={() => scrollToSection("invest2")}
-                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition text-left"
+                  className="text-left text-blue-600 underline underline-offset-4 transition hover:text-blue-800"
                 >
                   {tServices("points.p3")}
                 </button>
@@ -178,7 +217,7 @@ export default function AboutPage() {
               <li>
                 <button
                   onClick={() => scrollToSection("partner")}
-                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition text-left"
+                  className="text-left text-blue-600 underline underline-offset-4 transition hover:text-blue-800"
                 >
                   {tServices("points.p4")}
                 </button>
@@ -187,7 +226,7 @@ export default function AboutPage() {
               <li>
                 <button
                   onClick={() => scrollToSection("invest")}
-                  className="text-blue-600 underline underline-offset-4 hover:text-blue-800 transition text-left"
+                  className="text-left text-blue-600 underline underline-offset-4 transition hover:text-blue-800"
                 >
                   {tServices("points.p5")}
                 </button>
@@ -195,37 +234,44 @@ export default function AboutPage() {
             </ul>
           </div>
 
-          <div className="flex justify-center">
-            <div className="w-full max-w-[700px] min-w-[480px]">
+          <div className="order-2 flex justify-center">
+            <div className="w-full max-w-md sm:max-w-xl lg:max-w-[700px] lg:min-w-[480px]">
               <Image
                 src={canadafull2}
                 alt="Canada"
-                className="w-full h-auto object-cover rounded-2xl border border-gray-200 shadow-md"
+                className="h-auto w-full rounded-2xl border border-gray-200 object-cover shadow-md"
                 priority
               />
             </div>
           </div>
         </div>
       </section>
+      <section
+        id="baza"
+        className="mb-16 bg-[#f5f6f8] py-14 sm:mb-20 sm:py-20 lg:py-24"
+      >
+        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
+          <h2 className="mb-6 text-2xl font-bold leading-tight sm:text-3xl md:text-4xl lg:text-[44px]">
+            {tDatabase("title")}
+          </h2>
 
-      <section id="baza" className="py-24 bg-[#f5f6f8]  mb-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-[44px] font-bold mb-8">{tDatabase("title")}</h2>
+          <p className="mb-5 text-sm leading-6 text-gray-700 sm:text-base sm:leading-7">
+            {tDatabase("intro")}
+          </p>
 
-          <p className="text-gray-700 leading-7 mb-6">{tDatabase("intro")}</p>
+          <p className="mb-6 text-sm leading-6 text-gray-700 sm:text-base sm:leading-7">
+            {tDatabase("text1")}
+          </p>
 
-          <p className="text-gray-700 leading-7 mb-8">{tDatabase("text1")}</p>
-
-          <h3 className="text-[20px] font-semibold mb-6">
+          <h3 className="mb-5 text-base font-semibold sm:text-lg md:text-xl">
             {tDatabase("subscriptions")}
           </h3>
 
-          <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg transition">
+          <button className="w-full rounded-lg bg-red-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-red-700 sm:w-auto sm:px-8 sm:text-base">
             {tDatabase("button")}
           </button>
         </div>
       </section>
-
       <section id="start" className="py-16 md:py-24 scroll-mt-24">
         <div className="max-w-3xl mx-auto px-4 md:px-6 text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12">
@@ -252,76 +298,88 @@ export default function AboutPage() {
           </ol>
         </div>
       </section>
-      <section id="risks" className="py-16 md:py-20 scroll-mt-24">
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
-          <div className="hidden lg:flex justify-center">
-            <div className="w-full max-w-[700px] min-w-[480px]">
+      <section id="risks" className="scroll-mt-24 py-12 md:py-16 lg:py-20">
+        <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 px-4 md:px-6 lg:grid-cols-3 lg:gap-16 lg:px-8">
+          <div className="order-2 flex justify-center lg:order-1 lg:flex">
+            <div className="w-full max-w-md sm:max-w-xl lg:max-w-[700px] lg:min-w-[480px]">
               <Image
                 src={canadafull3}
                 alt="Risks"
-                className="w-full h-auto object-cover rounded-2xl border border-gray-200 shadow-md"
+                className="h-auto w-full rounded-2xl border border-gray-200 object-cover shadow-md"
                 priority
               />
             </div>
           </div>
-          <div className="lg:col-span-2 pl-20">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl leading-tight font-bold mb-8 max-w-3xl">
+
+          <div className="order-1 lg:order-2 lg:col-span-2 lg:pl-20">
+            <h2 className="mb-6 max-w-3xl text-2xl font-bold leading-tight sm:text-3xl md:text-4xl lg:mb-8 lg:text-5xl">
               {tRisks("title")}
             </h2>
 
-            <p className="text-base leading-7 mb-6">{tRisks("text1")}</p>
+            <p className="mb-5 text-sm leading-6 text-gray-700 sm:text-base sm:leading-7">
+              {tRisks("text1")}
+            </p>
 
-            <p className="text-base leading-7">{tRisks("text2")}</p>
+            <p className="text-sm leading-6 text-gray-700 sm:text-base sm:leading-7">
+              {tRisks("text2")}
+            </p>
           </div>
         </div>
       </section>
-      <section id="trips" className="py-16 md:py-20 scroll-mt-24 bg-white">
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12">
+      <section
+        id="trips"
+        className="scroll-mt-24 bg-white py-12 md:py-16 lg:py-20"
+      >
+        <div className="mx-auto max-w-screen-xl px-4 md:px-6 lg:px-8">
+          <h2 className="mb-8 text-2xl font-bold sm:text-3xl md:text-4xl lg:mb-12 lg:text-5xl">
             {tTrips("title")}
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            <div className="bg-[#f8f9fb] p-6 md:p-8 rounded-2xl border border-gray-200">
-              <h3 className="text-xl md:text-2xl font-semibold mb-4">
-                {tTrips("visit.title")}
-              </h3>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:gap-12">
+            <div className="flex flex-col justify-between rounded-2xl border border-gray-200 bg-[#f8f9fb] p-5 sm:p-6 md:p-8">
+              <div>
+                <h3 className="mb-3 text-lg font-semibold sm:text-xl md:text-2xl">
+                  {tTrips("visit.title")}
+                </h3>
 
-              <p className="text-gray-700 mb-4 leading-7">
-                {tTrips("visit.text1")}
-              </p>
+                <p className="mb-3 text-sm leading-6 text-gray-700 sm:text-base sm:leading-7">
+                  {tTrips("visit.text1")}
+                </p>
 
-              <p className="text-gray-700 mb-4 leading-7">
-                {tTrips("visit.text2")}
-              </p>
+                <p className="mb-3 text-sm leading-6 text-gray-700 sm:text-base sm:leading-7">
+                  {tTrips("visit.text2")}
+                </p>
 
-              <p className="text-gray-700 mb-6 leading-7">
-                {tTrips("visit.text3")}
-              </p>
+                <p className="mb-5 text-sm leading-6 text-gray-700 sm:text-base sm:leading-7">
+                  {tTrips("visit.text3")}
+                </p>
+              </div>
 
-              <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg">
+              <button className="w-full rounded-lg bg-red-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-red-700 sm:w-auto sm:px-6 sm:text-base">
                 {tTrips("visit.button")}
               </button>
             </div>
 
-            <div className="bg-[#f8f9fb] p-6 md:p-8 rounded-2xl border border-gray-200">
-              <h3 className="text-xl md:text-2xl font-semibold mb-4">
-                {tTrips("business.title")}
-              </h3>
+            <div className="flex flex-col justify-between rounded-2xl border border-gray-200 bg-[#f8f9fb] p-5 sm:p-6 md:p-8">
+              <div>
+                <h3 className="mb-3 text-lg font-semibold sm:text-xl md:text-2xl">
+                  {tTrips("business.title")}
+                </h3>
 
-              <p className="text-gray-700 mb-4 leading-7">
-                {tTrips("business.text1")}
-              </p>
+                <p className="mb-3 text-sm leading-6 text-gray-700 sm:text-base sm:leading-7">
+                  {tTrips("business.text1")}
+                </p>
 
-              <p className="text-gray-700 mb-4 leading-7">
-                {tTrips("business.text2")}
-              </p>
+                <p className="mb-3 text-sm leading-6 text-gray-700 sm:text-base sm:leading-7">
+                  {tTrips("business.text2")}
+                </p>
 
-              <p className="text-gray-700 mb-6 leading-7">
-                {tTrips("business.text3")}
-              </p>
+                <p className="mb-5 text-sm leading-6 text-gray-700 sm:text-base sm:leading-7">
+                  {tTrips("business.text3")}
+                </p>
+              </div>
 
-              <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg">
+              <button className="w-full rounded-lg bg-red-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-red-700 sm:w-auto sm:px-6 sm:text-base">
                 {tTrips("business.button")}
               </button>
             </div>
@@ -330,43 +388,54 @@ export default function AboutPage() {
       </section>
       <section
         id="invest"
-        className="bg-[#f5f6f8] py-16 md:py-20 mb-16 md:mb-20"
+        className="mb-12 bg-[#f5f6f8] py-12 md:mb-16 md:py-16 lg:mb-20 lg:py-20"
       >
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
-          <div className="lg:col-span-2">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl leading-tight font-bold text-gray-900 mb-6 max-w-3xl">
+        <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 px-4 md:px-6 lg:grid-cols-3 lg:gap-16 lg:px-8">
+          <div className="order-1 lg:col-span-2">
+            <h2 className="mb-5 max-w-3xl text-2xl font-bold leading-tight text-gray-900 sm:text-3xl md:text-4xl lg:mb-6 lg:text-5xl">
               {t("title")}
             </h2>
 
-            <p className="text-gray-600 leading-7 mb-4">{t("intro")}</p>
+            <p className="mb-4 text-sm leading-6 text-gray-600 sm:text-base sm:leading-7">
+              {t("intro")}
+            </p>
 
-            <p className="text-gray-600 leading-7 mb-4">{t("text1")}</p>
+            <p className="mb-4 text-sm leading-6 text-gray-600 sm:text-base sm:leading-7">
+              {t("text1")}
+            </p>
 
-            <p className="text-gray-600 leading-7 mb-4">{t("text2")}</p>
+            <p className="mb-4 text-sm leading-6 text-gray-600 sm:text-base sm:leading-7">
+              {t("text2")}
+            </p>
 
-            <p className="text-gray-600 leading-7">{t("text3")}</p>
+            <p className="text-sm leading-6 text-gray-600 sm:text-base sm:leading-7">
+              {t("text3")}
+            </p>
           </div>
 
-          <div className="flex justify-center">
-            <div className="w-full max-w-[700px] min-w-[450px] mt-35 ml-16">
+          <div className="order-2 flex justify-center lg:order-2">
+            <div className="w-full max-w-md sm:max-w-xl lg:ml-16 lg:mt-35 lg:max-w-[700px] lg:min-w-[450px]">
               <Image
                 src={canadafull6}
                 alt="Real Estate Canada"
-                className="w-full h-auto object-cover rounded-2xl border border-gray-200 shadow-md"
+                className="h-auto w-full rounded-2xl border border-gray-200 object-cover shadow-md"
                 priority
               />
             </div>
           </div>
         </div>
       </section>
+      <section id="invest2" className="mb-16 py-12 sm:mb-20 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <h2 className="mb-5 text-2xl font-bold leading-tight sm:text-3xl md:text-4xl lg:text-[44px]">
+            {start("title")}
+          </h2>
 
-      <section id="invest2" className=" py-20 mb-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-[44px] font-bold mb-6">{start("title")}</h2>
+          <p className="mb-6 text-sm text-gray-600 sm:mb-8 sm:text-base">
+            {start("intro")}
+          </p>
 
-          <p className="mb-8 text-gray-600">{start("intro")}</p>
-
-          <ol className="list-decimal pl-6 space-y-3 text-gray-600 mb-12">
+          <ol className="mb-10 list-decimal space-y-2 pl-5 text-sm text-gray-600 sm:mb-12 sm:space-y-3 sm:pl-6 sm:text-base">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
               <li key={i}>{start(`steps.s${i}`)}</li>
             ))}
@@ -375,20 +444,25 @@ export default function AboutPage() {
           <div className="mb-8">
             <button
               onClick={() => setShowSubs(!showSubs)}
-              className="bg-red-600 text-white px-6 py-3 rounded-lg"
+              className="w-full rounded-lg bg-red-600 px-5 py-3 text-sm font-medium text-white sm:w-auto sm:px-6 sm:text-base"
             >
               {start("subscriptions.button")}
             </button>
 
             {showSubs && (
-              <div className="mt-6 space-y-4">
+              <div className="mt-5 space-y-3 sm:mt-6 sm:space-y-4">
                 {["basic", "extended", "premium"].map((plan) => (
-                  <div key={plan} className="bg-white p-4 rounded-lg shadow">
-                    <h3 className="font-semibold">
+                  <div
+                    key={plan}
+                    className="rounded-lg bg-white p-4 shadow sm:p-5"
+                  >
+                    <h3 className="mb-1 text-sm font-semibold sm:text-base">
                       {start(`subscriptions.plans.${plan}.name`)}
                     </h3>
-                    <p>{start(`subscriptions.plans.${plan}.price`)}</p>
-                    <p className="text-gray-600">
+                    <p className="text-sm sm:text-base">
+                      {start(`subscriptions.plans.${plan}.price`)}
+                    </p>
+                    <p className="text-sm text-gray-600 sm:text-base">
                       {start(`subscriptions.plans.${plan}.desc`)}
                     </p>
                   </div>
@@ -400,19 +474,22 @@ export default function AboutPage() {
           <div>
             <button
               onClick={() => setShowPackages(!showPackages)}
-              className="bg-red-600 text-white px-6 py-3 rounded-lg"
+              className="w-full rounded-lg bg-red-600 px-5 py-3 text-sm font-medium text-white sm:w-auto sm:px-6 sm:text-base"
             >
               {start("packages.button")}
             </button>
 
             {showPackages && (
-              <div className="mt-6 space-y-4">
+              <div className="mt-5 space-y-3 sm:mt-6 sm:space-y-4">
                 {["silver", "gold", "platinum"].map((pack) => (
-                  <div key={pack} className="bg-white p-4 rounded-lg shadow">
-                    <h3 className="font-semibold">
+                  <div
+                    key={pack}
+                    className="rounded-lg bg-white p-4 shadow sm:p-5"
+                  >
+                    <h3 className="mb-1 text-sm font-semibold sm:text-base">
                       {start(`packages.items.${pack}.name`)}
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-sm text-gray-600 sm:text-base">
                       {start(`packages.items.${pack}.desc`)}
                     </p>
                   </div>
@@ -422,36 +499,38 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <section id="partner" className="pb-16 md:pb-24 scroll-mt-24">
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
-          <div className="lg:col-span-2">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl leading-tight font-bold mb-6 max-w-3xl">
+      <section id="partner" className="scroll-mt-24 pb-12 md:pb-16 lg:pb-24">
+        <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 px-4 md:px-6 lg:grid-cols-3 lg:gap-16 lg:px-8">
+          <div className="order-1 lg:col-span-2">
+            <h2 className="mb-5 max-w-3xl text-2xl font-bold leading-tight sm:text-3xl md:text-4xl lg:mb-6 lg:text-5xl">
               {tPartner("title")}
             </h2>
 
-            <p className="text-base leading-7 mb-6">{tPartner("intro")}</p>
+            <p className="mb-5 text-sm leading-6 text-gray-700 sm:text-base sm:leading-7 lg:mb-6">
+              {tPartner("intro")}
+            </p>
 
-            <h3 className="text-lg md:text-xl font-semibold mb-4">
+            <h3 className="mb-4 text-base font-semibold sm:text-lg md:text-xl">
               {tPartner("listTitle")}
             </h3>
 
-            <ul className="list-disc pl-6 space-y-3 text-base leading-7 marker:text-red-600 mb-8">
+            <ul className="mb-6 list-disc space-y-3 pl-5 text-sm leading-6 marker:text-red-600 sm:pl-6 sm:text-base sm:leading-7 lg:mb-8">
               {["p1", "p2", "p3", "p4"].map((point) => (
                 <li key={point}>{tPartner(`points.${point}`)}</li>
               ))}
             </ul>
 
-            <button className="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg transition">
+            <button className="w-full rounded-lg bg-red-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-red-700 sm:w-auto sm:px-8 sm:text-base">
               {tPartner("button")}
             </button>
           </div>
 
-          <div className="flex justify-center">
-            <div className="w-full max-w-[700px] min-w-[480px] mt-30 ml-12">
+          <div className="order-2 flex justify-center">
+            <div className="w-full max-w-md sm:max-w-xl lg:ml-12 lg:mt-30 lg:max-w-[700px] lg:min-w-[480px]">
               <Image
                 src={canadafull4}
                 alt="Risks"
-                className="w-full h-auto object-cover rounded-2xl border border-gray-200 shadow-md"
+                className="h-auto w-full rounded-2xl border border-gray-200 object-cover shadow-md"
                 priority
               />
             </div>

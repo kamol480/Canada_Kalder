@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getLocale, getTranslations } from "next-intl/server";
 import Footer from "@/components/ui/Footer";
+import { Menu, Search, User, X } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,89 +47,100 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-  <div className="sticky top-0 z-50">
-    <header className="border-b h-[100px] bg-white/90 backdrop-blur dark:bg-black/80">
-      <div className="mx-auto flex max-w-7xl items-center gap-8 px-8 py-5">
-        <Link
-          href="/"
-          locale={locale}
-          className="flex items-center gap-4"
-        >
-          <Image
-            src={logoCanada}
-            alt="KALDER ENERGY"
-            priority
-            className="h-16 w-16 object-contain"
-          />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+          >
+       <div className="fixed top-0 left-0 z-40 w-full">
+  <header className="border-b bg-white/90 backdrop-blur dark:bg-black/80">
+    <div className="mx-auto flex h-[80px] max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:h-[100px] lg:px-8">
+      <Link
+        href="/"
+        locale={locale}
+        className="flex min-w-0 items-center gap-3"
+      >
+        <Image
+          src={logoCanada}
+          alt="KALDER ENERGY"
+          priority
+          className="h-12 w-12 object-contain sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+        />
 
-          <div className="hidden sm:block leading-tight">
-            <div className="text-xl font-bold tracking-tight">
-              KALDER ENERGY
-            </div>
-
-            <div className="text-sm text-muted-foreground">
-              {t("tagline")}
-            </div>
+        <div className="">
+          <div className="text-base font-bold  lg:text-xl">
+            KALDER ENERGY
           </div>
-        </Link>
-
-        <div className="flex flex-1 justify-center">
-          <div className="relative w-[420px] max-w-full">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m21 21-4.34-4.34" />
-              <circle cx="11" cy="11" r="8" />
-            </svg>
-
-            <Input
-              placeholder={t("search")}
-              className="h-12 rounded-2xl pl-10 text-base shadow-sm"
-            />
+          <div className="text-xs lg:text-sm text-muted-foreground">
+            {t("tagline")}
           </div>
         </div>
+      </Link>
 
+      <div className="hidden flex-1 justify-center md:flex">
+        <div className="relative w-[420px] max-w-full">
+          <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            placeholder={t("search")}
+            className="h-12 rounded-2xl pl-10 text-base shadow-sm"
+          />
+        </div>
+      </div>
+
+      <div className="hidden items-center gap-3 md:flex">
         <Link
           href="/account"
           locale={locale}
-          className="h-12 rounded-2xl bg-red-600 px-6 text-base font-semibold text-white flex items-center gap-2"
+          className="flex h-12 items-center gap-2 rounded-2xl bg-red-600 px-6 text-base font-semibold text-white"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-            <circle cx="12" cy="7" r="4" />
-          </svg>
-
+          <User className="h-5 w-5" />
           {t("account")}
         </Link>
 
         <ThemeToggle />
         <LocaleToggle />
       </div>
-    </header>
-  </div>
 
-  <main>{children}</main>
-</ThemeProvider>
+      <div className="md:hidden">
+        <details className="group relative">
+          <summary className="flex list-none items-center gap-2 [&::-webkit-details-marker]:hidden">
+            <ThemeToggle />
+            <LocaleToggle />
+
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border bg-background cursor-pointer">
+              <Menu className="h-5 w-5 group-open:hidden" />
+              <X className="hidden h-5 w-5 group-open:block" />
+            </span>
+          </summary>
+
+          <div className="absolute left-0 top-[calc(100%+12px)] w-screen border-t bg-white/95 px-4 py-4 shadow-lg backdrop-blur dark:bg-black/95">
+            <div className="mx-auto flex max-w-7xl flex-col gap-4">
+              <div className="relative w-full">
+                <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  placeholder={t("search")}
+                  className="h-11 rounded-2xl pl-10 text-base shadow-sm"
+                />
+              </div>
+
+              <Link
+                href="/account"
+                locale={locale}
+                className="flex h-11 items-center justify-center gap-2 rounded-2xl bg-red-600 px-4 text-base font-semibold text-white"
+              >
+                <User className="h-5 w-5" />
+                {t("account")}
+              </Link>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+</div>
+
+            <main>{children}</main>
+          </ThemeProvider>
         </NextIntlClientProvider>
         <Footer />
       </body>
